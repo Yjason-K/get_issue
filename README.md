@@ -1,41 +1,46 @@
-# get_issue
+# Getting Started with Create React App
 
-## 목표
-특정 깃헙 레파지토리의 이슈 목록과 상세 내용을 확인하는 웹 사이트 구축
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-1. 이슈 목록 화면
-    - 이슈 목록 가져오기 API 활용
-    - open 상태의 이슈 중 코멘트가 많은 순으로 정렬
-    - 각 행에는 ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트수’를 표시
-    - 다섯번째 셀마다 광고 이미지 출력
-        - 이미지
-            https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100
-            
-        - 광고 이미지 클릭 시 https://www.wanted.co.kr/ 로 이동
-    - 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)
+## Available Scripts
 
-1. 이슈 상세 화면
-    - 이슈의 상세 내용 표시
-    - ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문' 표시
-    
-2. 공통 헤더
-    - 두 페이지는 공통 헤더를 공유합니다.
-    - 헤더에는 Organization Name / Repository Name이 표시됩니다.
+In the project directory, you can run:
 
+### `npm start`
 
-## Commit convetnion
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-| Type       | 설명                                                         |
-|------------|------------------------------------------------------------|
-| feat       | 새로운 기능 추가                                             |
-| fix        | 버그 수정 또는 오타                                          |
-| refactor   | 코드 리팩토링                                                 |
-| design     | 사용자 UI 디자인 변경 (CSS 등)                               |
-| comment    | 필요한 주석 추가 및 변경                                      |
-| style      | 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우              |
-| test       | 테스트 코드 추가, 수정, 삭제, 비즈니스 로직 변경이 없는 경우 |
-| chore      | 위에 해당되지 않는 기타 변경사항 (빌드 스크립트, 패키지 등) |
-| init       | 프로젝트 초기 생성                                            |
-| rename     | 파일 또는 폴더명 수정 또는 이동                                |
-| remove     | 파일을 삭제하는 작업만 수행하는 경우                          |
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
