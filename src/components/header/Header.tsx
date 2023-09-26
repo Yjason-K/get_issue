@@ -7,7 +7,7 @@ export const HEADER = () => {
   return (
     <h1>
       원하는 User의 Repo Issue 가져오기!!
-      <GETISSUE />
+      {showInput ? <GETISSUE /> : <></>}
     </h1>
   );
 };
