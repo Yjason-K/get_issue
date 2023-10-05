@@ -27,19 +27,45 @@ export const ISSUE = React.memo((curRepoInfo: Repo) => {
     }
   }, [error]);
 
+  console.log(issues);
+
   return (
     <div className="issues">
       {issues.map((issue: any, index) => (
-        <div
-          ref={issues.length === index + 1 ? lastIssueElementRef : null}
-          key={issue.number}
-          className="issue"
-        >
-          <p>Issue Number: {issue.number}</p>
-          <p>Title: {issue.title}</p>
-          <p>Author: {issue.user.login}</p>
-          <p>Date: {issue.created_at}</p>
-          <p>Comments: {issue.comments}</p>
+        <div className="repoiissue">
+          <div
+            ref={issues.length === index + 1 ? lastIssueElementRef : null}
+            key={issue.number}
+            className="issue"
+          >
+            <div className="left">
+              <div className="issuetitle">
+                <p>
+                  # {issue.number} {issue.title}
+                </p>
+              </div>
+              <div className="issueinfo">
+                <p>
+                  작성자: {issue.user.login}, 작성일: {issue.created_at}
+                </p>
+              </div>
+            </div>
+            <div className="right">
+              <p>Comments: {issue.comments}</p>
+            </div>
+          </div>
+          {/* 5번재 셀마다 원티드 광과 삽입 */}
+          {(index + 1) % 5 === 0 && (
+            <div className="towanted">
+              {" "}
+              <a href="https://www.wanted.co.kr/">
+                <img
+                  src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
+                  alt="Description"
+                />
+              </a>
+            </div>
+          )}
         </div>
       ))}
       {loading && <h3>Loading...</h3>}

@@ -1,9 +1,5 @@
-import { Octokit } from "@octokit/rest";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useState } from "react";
 import { ISSUE } from "../Issue";
-import { issueLIST } from "../../libs/recoil/Issue";
-import useGithubIssues from "../../hooks/useGithubIssue";
 
 export const GETISSUE = () => {
   // 검색 시 사용될 변수
@@ -24,6 +20,7 @@ export const GETISSUE = () => {
   //  버튼 클릭시 정보 생성
   const findIssues = () => {
     setCurRepoInfo({ user: repoInfo.user, repo: repoInfo.repo });
+    setRepoInfo({ user: "", repo: "" });
   };
 
   return (
@@ -52,6 +49,13 @@ export const GETISSUE = () => {
         >
           Issue불러오기
         </button>
+      </div>
+      <div className="userRepo">
+        {curRepoInfo.user && curRepoInfo.repo && (
+          <h2>
+            {curRepoInfo.user} / {curRepoInfo.repo}
+          </h2>
+        )}
       </div>
       <ISSUE {...curRepoInfo} />
     </div>
