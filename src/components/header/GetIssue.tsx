@@ -1,65 +1,59 @@
 import { Octokit } from "@octokit/rest";
-import { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { ISSUE } from "../Issue";
 import { issueLIST } from "../../libs/recoil/Issue";
+import useGithubIssues from "../../hooks/useGithubIssue";
 
 export const GETISSUE = () => {
-  const [repoInfo, setRepoInfo] = useState({
-    user: "",
-    repo: "",
-  });
+  // 검색 시 사용될 변수
+  const [repoInfo, setRepoInfo] = useState({ user: "", repo: "" });
 
-  //  input Change Handler
+  // //  input Change Handler
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
     setRepoInfo({ ...repoInfo, [id]: value });
   };
 
-  const setIssues = useSetRecoilState(issueLIST);
+  // 검색 버튼 누르면 input은 ""으로 변경
+  const [curRepoInfo, setCurRepoInfo] = useState({
+    user: "",
+    repo: "",
+  });
 
   //  버튼 클릭시 정보 생성
-  const findIssues = async () => {
-    const octokit = new Octokit({
-      auth: `${process.env.REACT_APP_GIT_API}`,
-    });
-
-    try {
-      // Fetch the list of issues for the provided user and repository
-      const response = await octokit.issues.listForRepo({
-        owner: repoInfo.user,
-        repo: repoInfo.repo,
-        state: "open",
-      });
-
-      // Handle the response
-      const issues = response.data;
-      setIssues(issues);
-      setRepoInfo({ user: "", repo: "" });
-      console.log(issues);
-    } catch (error) {
-      console.error("Error fetching issues:", error);
-    }
+  const findIssues = () => {
+    setCurRepoInfo({ user: repoInfo.user, repo: repoInfo.repo });
   };
 
   return (
-    <div className="get_repo">
-      <input
-        type="text"
-        placeholder="User"
-        id="user"
-        value={repoInfo.user}
-        onChange={inputChange}
-      />
-      <input
-        type="text"
-        placeholder="Repo"
-        id="repo"
-        value={repoInfo.repo}
-        onChange={inputChange}
-      />
-      <button type="button" className="find_issues" onClick={findIssues}>
-        Issue불러오기
-      </button>
+    <div className="contenet">
+      <div className="get_repo">
+        <input
+          type="text"
+          placeholder="User"
+          id="user"
+          value={repoInfo.user}
+          onChange={inputChange}
+        />
+        <input
+          type="text"
+          placeholder="Repo"
+          id="repo"
+          value={repoInfo.repo}
+          onChange={inputChange}
+        />
+        <button
+          type="button"
+          className="find_issues"
+          onClick={() => {
+            findIssues();
+          }}
+        >
+          Issue불러오기
+        </button>
+      </div>
+      <ISSUE {...curRepoInfo} />
     </div>
   );
 };
