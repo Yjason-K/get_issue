@@ -10,6 +10,7 @@ export const REPOISSUE = () => {
   const [issue, setIssue] = useState<any>();
   const [error, setError] = useState<Error | null>(null);
 
+  console.log(repoInfo.user);
   useEffect(() => {
     const fetchIssues = async () => {
       setLoading(true);
@@ -58,28 +59,34 @@ export const REPOISSUE = () => {
           {repoInfo.user} / {repoInfo.repo}
         </h2>
       </div>
-      <div className="issuereport">
-        <div className="userandtitle">
-          <div className="userthumbnail">
-            <img src={issue.user.avatar_url} alt="user_thumbnail" />
-          </div>
-          <div className="titleandcomment">
-            <div className="issuetitle">
-              <p>
-                # {issue.number} {issue.title}
-              </p>
-              <p>
-                작성자: {issue.user.login}, 작성일:{" "}
-                {formatDate(issue.created_at)}
-              </p>
+      {issue && (
+        <div className="issuereport">
+          <div className="userandtitle">
+            {issue.user && (
+              <div className="userthumbnail">
+                <img src={issue.user.avatar_url} alt="user_thumbnail" />
+              </div>
+            )}
+            <div className="titleandcomment">
+              <div className="issuetitle">
+                <p>
+                  # {issue.number} {issue.title}
+                </p>
+                {issue.user && (
+                  <p>
+                    작성자: {issue.user.login}, 작성일:{" "}
+                    {formatDate(issue.created_at)}
+                  </p>
+                )}
+              </div>
+              <div className="comments">
+                <p>코멘트: {issue.comments}</p>
+              </div>
             </div>
-            <div className="comments">
-              <p>코멘트: {issue.comments}</p>
-            </div>
           </div>
+          <div className="issuebody">{issue.body}</div>
         </div>
-        <div className="issuebody">{issue.body}</div>
-      </div>
+      )}
       {loading && <h3>Loading...</h3>}
     </div>
   );
