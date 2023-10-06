@@ -1,0 +1,35 @@
+.getrepouissue {
+  width: 75%;
+}
+
+.contenet {
+  width: 100%;
+}
+
+.issue {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+}
+
+.issuetitle {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.issueinfo {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.right {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.towanted {
+  margin-top: 10px;
+  border: 1px solid black;
+}
