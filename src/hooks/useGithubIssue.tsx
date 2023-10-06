@@ -21,9 +21,11 @@ function useGithubIssues(curRepoInfo: Repo, page: number) {
   useEffect(() => {
     const fetchIssues = async () => {
       setLoading(true);
-      const octokit = new Octokit({
-        auth: `${process.env.REACT_APP_GIT_API}`,
-      });
+      // const octokit = new Octokit({
+      //   auth: `${process.env.REACT_APP_GIT_API}`,
+      // });
+
+      const octokit = new Octokit();
 
       try {
         setLoading(true);

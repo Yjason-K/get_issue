@@ -13,9 +13,11 @@ export const REPOISSUE = () => {
   useEffect(() => {
     const fetchIssues = async () => {
       setLoading(true);
-      const octokit = new Octokit({
-        auth: `${process.env.REACT_APP_GIT_API}`,
-      });
+      // const octokit = new Octokit({
+      //   auth: `${process.env.REACT_APP_GIT_API}`,
+      // });
+
+      const octokit = new Octokit();
 
       try {
         const response = await octokit.issues.get({
