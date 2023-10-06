@@ -1,11 +1,14 @@
 import { atom } from "recoil";
 
-export const issueState = atom({
-  key: "issueinput",
-  default: true,
+export const repoInfoState = atom({
+  key: "repoInfoState",
+  default: {
+    user: "",
+    repo: "",
+  },
 });
 
-export const issueLIST = atom({
-  key: "issueLists",
-  default: <any>[],
+export const issuesState = atom<any[]>({
+  key: "issuesState",
+  default: [],
 });

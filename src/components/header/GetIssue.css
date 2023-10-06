@@ -6,12 +6,17 @@
   width: 100%;
 }
 
+.fromissue {
+  font-size: 16px;
+}
+
 .issue {
   display: flex;
   flex-direction: row;
   width: 100%;
   border-bottom: 1px solid black;
   justify-content: space-between;
+  text-decoration: none;
 }
 
 .issuetitle {
