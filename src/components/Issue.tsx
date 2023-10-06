@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import useGithubIssues, { Repo } from "../hooks/useGithubIssue";
+import { useRecoilValue } from "recoil";
+import { repoInfoState } from "../libs/recoil/Issue";
+import { Link } from "react-router-dom";
 
-export const ISSUE = React.memo((curRepoInfo: Repo) => {
+export const ISSUE = React.memo(() => {
   const [page, setPage] = useState(1);
-  const { issues, loading, error } = useGithubIssues(curRepoInfo, page);
+  const curRepoinfo = useRecoilValue(repoInfoState);
+  const { issues, loading, error } = useGithubIssues(curRepoinfo, page);
 
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -27,33 +31,49 @@ export const ISSUE = React.memo((curRepoInfo: Repo) => {
     }
   }, [error]);
 
-  console.log(issues);
+  function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${String(date.getDate()).padStart(2, "0")}`;
+  }
+
+  console.log(curRepoinfo);
 
   return (
     <div className="issues">
       {issues.map((issue: any, index) => (
         <div className="repoiissue">
-          <div
-            ref={issues.length === index + 1 ? lastIssueElementRef : null}
-            key={issue.number}
-            className="issue"
+          <Link
+            to={`/issue/${issue.number}`}
+            state={{ repoinfo: curRepoinfo }}
+            // target="_blank"
+            rel="noopener noreferrer"
           >
-            <div className="left">
-              <div className="issuetitle">
-                <p>
-                  # {issue.number} {issue.title}
-                </p>
+            <div
+              ref={issues.length === index + 1 ? lastIssueElementRef : null}
+              key={issue.number}
+              className="issue"
+            >
+              <div className="left">
+                <div className="issuetitle">
+                  <p>
+                    # {issue.number} {issue.title}
+                  </p>
+                </div>
+                <div className="issueinfo">
+                  <p>
+                    작성자: {issue.user.login}, 작성일:{" "}
+                    {formatDate(issue.created_at)}
+                  </p>
+                </div>
               </div>
-              <div className="issueinfo">
-                <p>
-                  작성자: {issue.user.login}, 작성일: {issue.created_at}
-                </p>
+              <div className="right">
+                <p>Comments: {issue.comments}</p>
               </div>
             </div>
-            <div className="right">
-              <p>Comments: {issue.comments}</p>
-            </div>
-          </div>
+          </Link>
           {/* 5번재 셀마다 원티드 광과 삽입 */}
           {(index + 1) % 5 === 0 && (
             <div className="towanted">

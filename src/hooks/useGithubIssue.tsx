@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Octokit } from "@octokit/rest"; // Octokit 라이브러리를 사용하기 위해 임포트합니다.
+import { Octokit } from "@octokit/rest";
+import { useRecoilState } from "recoil";
+import { issuesState } from "../libs/recoil/Issue";
 
 export type Repo = {
   user: string;
@@ -7,7 +9,7 @@ export type Repo = {
 };
 
 function useGithubIssues(curRepoInfo: Repo, page: number) {
-  const [issues, setIssues] = useState([]);
+  const [issues, setIssues] = useRecoilState(issuesState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -31,17 +33,12 @@ function useGithubIssues(curRepoInfo: Repo, page: number) {
           state: "open",
           page: page,
           number: 30,
+          sort: "comments",
         });
 
         const newIssues = response.data;
-        const combinedIssues = [...issues, ...newIssues];
 
-        // 전체 이슈 리스트를 comments가 많은 순으로 정렬
-        const sortedCombinedIssues: any = combinedIssues.sort(
-          (a, b) => b.comments - a.comments
-        );
-
-        setIssues(sortedCombinedIssues);
+        setIssues((prev) => [...prev, ...newIssues]);
       } catch (error) {
         console.error("Error fetching issues:", error);
         setError(error as Error);

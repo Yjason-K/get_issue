@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { ISSUE } from "../Issue";
+import { useRecoilState } from "recoil";
+import { repoInfoState } from "../../libs/recoil/Issue";
 
 export const GETISSUE = () => {
   // 검색 시 사용될 변수
@@ -12,10 +14,7 @@ export const GETISSUE = () => {
   };
 
   // 검색 버튼 누르면 input은 ""으로 변경
-  const [curRepoInfo, setCurRepoInfo] = useState({
-    user: "",
-    repo: "",
-  });
+  const [curRepoInfo, setCurRepoInfo] = useRecoilState(repoInfoState);
 
   //  버튼 클릭시 정보 생성
   const findIssues = () => {
@@ -52,12 +51,12 @@ export const GETISSUE = () => {
       </div>
       <div className="userRepo">
         {curRepoInfo.user && curRepoInfo.repo && (
-          <h2>
+          <h2 className="fromissue">
             {curRepoInfo.user} / {curRepoInfo.repo}
           </h2>
         )}
       </div>
-      <ISSUE {...curRepoInfo} />
+      <ISSUE />
     </div>
   );
 };
