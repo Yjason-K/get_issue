@@ -1,6 +1,8 @@
 import { useLocation, useParams } from "react-router-dom";
 import { Octokit } from "@octokit/rest";
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import "../repoIssue/RepoIssue.css";
 
 export const REPOISSUE = () => {
   const issueNumber = useParams();
@@ -52,6 +54,8 @@ export const REPOISSUE = () => {
     )}-${String(date.getDate()).padStart(2, "0")}`;
   }
 
+  console.log(issue);
+
   return (
     <div className="targetissue">
       <div className="userrepo">
@@ -64,7 +68,11 @@ export const REPOISSUE = () => {
           <div className="userandtitle">
             {issue.user && (
               <div className="userthumbnail">
-                <img src={issue.user.avatar_url} alt="user_thumbnail" />
+                <img
+                  src={issue.user.avatar_url}
+                  alt="user_thumbnail"
+                  className="thunmbnail"
+                />
               </div>
             )}
             <div className="titleandcomment">
@@ -84,7 +92,9 @@ export const REPOISSUE = () => {
               </div>
             </div>
           </div>
-          <div className="issuebody">{issue.body}</div>
+          <div className="issuebody">
+            <ReactMarkdown>{issue.body}</ReactMarkdown>
+          </div>
         </div>
       )}
       {loading && <h3>Loading...</h3>}
