@@ -3,6 +3,9 @@
 원하는 유저의 저장소의 이슈들을 불러올 수 있는 프로젝트 입니다. <br/>
 배포링크: https://graceful-sunburst-ef9ec3.netlify.app/main
 
+https://github.com/Yjason-K/get_issues/assets/81736873/b811b76d-2645-4002-a052-e21d510e3521
+
+
 
 
 
