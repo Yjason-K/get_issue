@@ -88,7 +88,7 @@ export const ISSUE = React.memo(() => {
           )}
         </div>
       ))}
-      {loading && <h3>Loading...</h3>}
+      {loading && <h3 style={{ fontSize: "2rem" }}>Loading...</h3>}
       {error && <h3>Error! Console을 확인해 주세요</h3>}
     </div>
   );
