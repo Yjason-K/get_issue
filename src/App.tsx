@@ -11,8 +11,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             {/* / 으로 접근하든 /main 으로 접근하든 홈으로 이동할 수 있게 설정 */}
-            <Route path="/" element={<Navigate to="/main" replace />} />
-            <Route path="/main" element={<HEADER />} />
+            <Route path="/" element={<HEADER />} />
             <Route path="/issue/:id" element={<REPOISSUE />} />
           </Routes>
         </BrowserRouter>
