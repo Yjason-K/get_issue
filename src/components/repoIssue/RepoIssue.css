@@ -1,0 +1,32 @@
+.targetissue {
+  width: 75%;
+}
+
+.userandtitle {
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  margin-bottom: 30px;
+}
+
+.userthumbnail {
+  width: 10%;
+}
+
+.thunmbnail {
+  height: 100%;
+  object-fit: cover;
+}
+
+.titleandcomment {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.comments {
+  font-weight: 500;
+  font-size: 2rem;
+}
