@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import useGithubIssues, { Repo } from "../hooks/useGithubIssue";
+import useGithubIssues, { Repo } from "../../hooks/useGithubIssue";
 import { useRecoilValue } from "recoil";
-import { repoInfoState } from "../libs/recoil/Issue";
+import { repoInfoState } from "../../libs/recoil/Issue";
 import { Link } from "react-router-dom";
 
 export const ISSUE = React.memo(() => {

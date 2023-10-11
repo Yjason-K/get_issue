@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ISSUE } from "../Issue";
+import { ISSUE } from "./Issue";
 import { useRecoilState } from "recoil";
 import { repoInfoState } from "../../libs/recoil/Issue";
 
